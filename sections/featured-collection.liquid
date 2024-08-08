@@ -4,10 +4,6 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
-{%- unless section.settings.quick_add == 'none' -%}
-    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-  {%- endunless -%}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -169,7 +165,6 @@
         </a>
       </div>
     {%- endif -%}
-
   </div>
 </div>
 
@@ -185,7 +180,7 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      
+
       "label": "t:sections.featured-collection.settings.title.label"
     },
     {
@@ -335,7 +330,6 @@
       "default": "adapt",
       "label": "t:sections.featured-collection.settings.image_ratio.label"
     },
-    
 
     {
       "type": "checkbox",
@@ -395,7 +389,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 35
+      "default": 36
     },
     {
       "type": "range",
@@ -405,7 +399,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 35
+      "default": 36
     }
   ],
   "presets": [
