@@ -243,6 +243,7 @@
 
           {%- if section.settings.show_social and has_social_icons -%}
             {%- render 'social-icons', class: 'footer__list-social' -%}
+           
           {%- endif -%}
         </div>
       </div>
@@ -357,6 +358,7 @@
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
         <small class="copyright__content">{{ powered_by_link }}</small>
+        <p>ssk</p>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
