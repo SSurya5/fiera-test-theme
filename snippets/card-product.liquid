@@ -509,11 +509,7 @@
                           <h3>{{ card_product.title | escape }}</h3>
                         </a>
                         {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                        {%- if card_product.quantity_price_breaks_configured? -%}
-                          <div class="card__information-volume-pricing-note">
-                            <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
-                          </div>
-                        {%- endif -%}
+                       
                       </div>
                     </div>
                     <div>
@@ -524,11 +520,7 @@
                           </h3>
                         </a>
                         {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                        {%- if card_product.quantity_price_breaks_configured? -%}
-                          <div class="card__information-volume-pricing-note">
-                            <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
-                          </div>
-                        {%- endif -%}
+                        
                       </div>
                       <bulk-modal
                         id="QuickBulkModal-{{ card_product.id }}-{{ section_id }}"
