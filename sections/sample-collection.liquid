@@ -1,6 +1,33 @@
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.collection_id %}
+  <div class="featured-collection">
+    {% assign collection = collections[section.settings.collection_id] %}
+    {% for product in collection.products %}
+      <div class="product-card">
+        <a href="{{ product.url }}">
+          <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title }}">
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.price | money_with_currency }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection_id",
+        "label": "Select Collection"
+      }
+    ]
   }
 {% endschema %}
