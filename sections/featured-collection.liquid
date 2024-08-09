@@ -4,6 +4,12 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
+/* INcluding Shapes for Images */
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+/* Padding top and bottom of the section made adjustable in customize screen */
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -46,6 +52,7 @@
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
+    /* Display Title and description of the section */
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
@@ -114,11 +121,11 @@
                     assign ridx = 2
                 endcase
               %}
-              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
+
               {% render 'card-product',
                 show_vendor: section.settings.show_vendor,
-                media_aspect_ratio: section.settings.image_ratio,
-                placeholder_image: placeholder_image
+                image_shape: section.settings.image_shape,
+                media_aspect_ratio: section.settings.image_ratio
               %}
             </li>
           {%- endfor -%}
@@ -164,6 +171,9 @@
           {{ 'sections.featured_collection.view_all' | t }}
         </a>
       </div>
+    {%- endif -%}
+    {% if section.settings.image_shape == 'arch' %}
+      {% render 'mask-arch' %}
     {%- endif -%}
   </div>
 </div>
@@ -329,6 +339,47 @@
       ],
       "default": "adapt",
       "label": "t:sections.featured-collection.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.image_shape.options__1.label"
+        },
+        {
+          "value": "arch",
+          "label": "t:sections.all.image_shape.options__2.label"
+        },
+        {
+          "value": "blob",
+          "label": "t:sections.all.image_shape.options__3.label"
+        },
+        {
+          "value": "chevronleft",
+          "label": "t:sections.all.image_shape.options__4.label"
+        },
+        {
+          "value": "chevronright",
+          "label": "t:sections.all.image_shape.options__5.label"
+        },
+        {
+          "value": "diamond",
+          "label": "t:sections.all.image_shape.options__6.label"
+        },
+        {
+          "value": "parallelogram",
+          "label": "t:sections.all.image_shape.options__7.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.all.image_shape.options__8.label"
+        }
+      ],
+      "default": "default",
+      "label": "t:sections.all.image_shape.label",
+      "info": "t:sections.all.image_shape.info"
     },
 
     {
