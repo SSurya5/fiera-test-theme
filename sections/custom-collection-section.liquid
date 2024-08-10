@@ -1,0 +1,65 @@
+<!-- Section Content -->
+{{ 'custom-collection-section.css' | asset_url | stylesheet_tag }}
+<div class="featured-collection-slider">
+  <h2>{{ section.settings.title }}</h2>
+  {%- if section.settings.description != blank
+    or section.settings.show_description
+    and section.settings.collection.description != empty
+  -%}
+    <p>{{ section.settings.description -}}</p>
+  {%- endif -%}
+  <!-- Slider Wrapper -->
+  <div class="slider-container">
+    <div class="slider">
+      {% for product in section.settings.featured_collection.products limit: section.settings.product_limit %}
+        <div class="slide">
+          <a href="{{ product.url }}">
+            <img src="{{ product | img_url: 'medium' }}" alt="{{ product.title }}">
+            <p>{{ product.title }}</p>
+            <p>{{ product.price | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- Slider Navigation Buttons -->
+  <button class="prev">‹</button>
+  <button class="next">›</button>
+</div>
+
+<!-- Section Schema -->
+{% schema %}
+{
+  "name": "Featured Slider",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Featured Collection",
+      "label": "Featured Collection"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.featured-collection.settings.description.label"
+    },
+    {
+      "type": "number",
+      "id": "product_limit",
+      "label": "Number of Products to Display",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
