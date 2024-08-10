@@ -1,0 +1,67 @@
+.featured-collection-slider {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .slider-container {
+    overflow: hidden;
+  }
+  
+  .slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  
+  /* Desktop: 4 columns */
+  @media (min-width: 1025px) {
+    .slide {
+      flex: 0 0 25%;
+    }
+  }
+  
+  /* Tablet: 3 columns */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .slide {
+      flex: 0 0 33.33%;
+    }
+  }
+  
+  /* Mobile: 1 column */
+  @media (max-width: 768px) {
+    .slide {
+      flex: 0 0 100%;
+    }
+  }
+  
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
