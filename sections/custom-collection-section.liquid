@@ -63,3 +63,56 @@
   ]
 }
 {% endschema %}
+
+<!-- JavaScript for Slider Functionality -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentIndex = 0;
+    let slidesToShow = getSlidesToShow();
+    const totalSlides = slides.length;
+
+    function updateSlider(index) {
+      slider.style.transform = `translateX(-${index * (100 / slidesToShow)}%)`;
+    }
+
+    function getSlidesToShow() {
+      if (window.innerWidth >= 1025) {
+        return 4;
+      } else if (window.innerWidth >= 769) {
+        return 3;
+      } else {
+        return 1;
+      }
+    }
+
+    prevButton.addEventListener('click', function () {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = Math.ceil(totalSlides / slidesToShow) - 1;
+      }
+      updateSlider(currentIndex);
+    });
+
+    nextButton.addEventListener('click', function () {
+      if (currentIndex < Math.ceil(totalSlides / slidesToShow) - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateSlider(currentIndex);
+    });
+
+    window.addEventListener('resize', function () {
+      slidesToShow = getSlidesToShow();
+      updateSlider(currentIndex);
+    });
+
+    // Initialize the slider
+    updateSlider(0);
+  });
+</script>
